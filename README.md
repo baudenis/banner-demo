@@ -78,7 +78,23 @@ Example of how to use it:
 />
 ```
 
-As you can see from the above example, we've taken parts of the `googletag.defineSlot('/147246189/example.com_300x600_sidebar_1', [[300, 600], [300, 300]], 'example_com_sidebar_1').addService(googletag.pubads());` code and used them as props in the component.
+In most cases, you might want to conditionally render component for desktop and mobile devices separately. Here's an example of how you can do it:
+
+Lets say that ```device``` is a boolean that determines whether the user is on a mobile device or not.
+
+```jsx
+<BannerComponent
+    adUnitPath={device ? '/147246189/example.com_300x600_desktop_1' : '/147246189/example.com_300x250_mobile_1'}
+    size={device ? [[300, 600],[300, 250]] : [300, 250]}
+    className={"nametest"}
+    threshold={300}
+    divId={device ? 'example_com_300x600_desktop_1' : 'example_com_300x250_mobile_1'}
+    refreshOnUrlChange={true}
+    random={false}
+/>
+``` 
+
+As you can see from the two above examples, we've taken parts of the `googletag.defineSlot('/147246189/example.com_300x600_sidebar_1', [[300, 600], [300, 300]], 'example_com_sidebar_1').addService(googletag.pubads());` code and used them as props in the component.
 
 From the required props, adUnitPath and size should match the ones that were given in the initial config, meanwhile divId can be anything you'd like.
 
